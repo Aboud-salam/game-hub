@@ -3,14 +3,18 @@ import { Game } from "../hooks/useGames";
 import { PlatformIconList } from "./PlatformIconList";
 import { CardBadge } from "./CardBadge";
 import getCroppedImgUrl from "../services/imgae-url";
+import useGames from "../hooks/useGames";
+import { CardSkeleton } from "./CardSkeleton";
 
 interface Props {
   game: Game;
 }
 export const GameCard = ({ game }: Props) => {
+  const { isLoaded } = useGames();
   const modImgUrl = getCroppedImgUrl(game.background_image);
+  if (!isLoaded) return <CardSkeleton url={modImgUrl} />;
   return (
-    <Card borderRadius={10} overflow={"hidden"}>
+    <Card width="400px" borderRadius={10} overflow={"hidden"}>
       <Image src={modImgUrl} />
       <CardBody>
         <Heading fontSize="2xl">{game.name}</Heading>
