@@ -14,7 +14,7 @@ export const GameCard = ({ game }: Props) => {
   const modImgUrl = getCroppedImgUrl(game.background_image);
   if (!isLoaded) return <CardSkeleton url={modImgUrl} />;
   return (
-    <Card width="400px" borderRadius={10} overflow={"hidden"}>
+    <Card>
       <Image src={modImgUrl} />
       <CardBody>
         <Heading fontSize="2xl">{game.name}</Heading>

@@ -11,7 +11,7 @@ interface Props {
 export const CardSkeleton = ({ url }: Props) => {
   return (
     <>
-      <Card width="400px" borderRadius={10} overflow={"hidden"}>
+      <Card>
         <Skeleton>
           <Image src={url} />
         </Skeleton>
