@@ -5,15 +5,13 @@ import {
   Skeleton,
   SkeletonText,
 } from "@chakra-ui/react";
-interface Props {
-  url: string;
-}
-export const CardSkeleton = ({ url }: Props) => {
+
+export const CardSkeleton = () => {
   return (
     <>
       <Card>
-        <Skeleton>
-          <Image src={url} />
+        <Skeleton height={"266px"}>
+          <Image />
         </Skeleton>
         <CardBody>
           <SkeletonText my={1} noOfLines={3} spacing="1" skeletonHeight="4" />

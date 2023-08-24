@@ -13,29 +13,30 @@ export interface Game {
   parent_platforms: { platform: Platform }[];
   metacritic: number;
 }
-interface FetchResponse {
+interface FetchGamesResponse {
   count: number;
   results: Game[];
 }
 const useGames = () => {
   const [games, setGames] = useState<Game[]>([]);
   const [error, setError] = useState("");
-  const [isLoaded, setLoaded] = useState(false);
+  const [isLoading, setLoading] = useState(false);
   useEffect(() => {
     const controller = new AbortController();
+    setLoading(true);
     apiClient
-      .get<FetchResponse>("/games", { signal: controller.signal })
+      .get<FetchGamesResponse>("/games", { signal: controller.signal })
       .then((res) => {
         setGames(res.data.results);
-        setLoaded(true);
+        setLoading(false);
       })
       .catch((err) => {
         if (err instanceof CanceledError) return;
         setError(err.message);
-        setLoaded(false);
+        setLoading(false);
       });
     return () => controller.abort();
   }, []);
-  return { games, error, isLoaded, setError };
+  return { games, error, isLoading, setError };
 };
 export default useGames;
