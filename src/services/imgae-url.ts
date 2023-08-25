@@ -1,4 +1,5 @@
 const getCroppedImgUrl = (url: string) => {
+  if (!url) return "";
   let target = "media/";
   let targetIndex = url.indexOf(target) + target.length - 1;
   let modImgUrl = url
