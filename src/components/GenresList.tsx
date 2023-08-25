@@ -1,11 +1,4 @@
-import {
-  HStack,
-  Image,
-  List,
-  ListItem,
-  Button,
-  Highlight,
-} from "@chakra-ui/react";
+import { HStack, Image, List, ListItem, Button } from "@chakra-ui/react";
 import useGenres, { Genre } from "../hooks/useGenres";
 import getCroppedImgUrl from "../services/imgae-url";
 import { Spinner } from "@chakra-ui/react";
@@ -15,7 +8,6 @@ interface Props {
 }
 const GenresList = ({ onSelectGenre, selectedGenre }: Props) => {
   const { data, isLoading, error } = useGenres();
-  // const [selectedIndex, setSelectedIndex] = useState(0);
   //   handling the error by not loading the genres list , so the whole application doesn't crash
   if (error) return null;
   if (isLoading) return <Spinner />;
@@ -33,17 +25,12 @@ const GenresList = ({ onSelectGenre, selectedGenre }: Props) => {
               variant={"link"}
               key={genre.id}
               fontSize={"lg"}
+              fontWeight={selectedGenre?.id === genre.id ? "bold" : "normal"}
               onClick={() => {
                 onSelectGenre(genre);
               }}
             >
-              {genre.id === selectedGenre?.id ? (
-                <Highlight query={genre.name} styles={{ color: "orange" }}>
-                  {genre.name}
-                </Highlight>
-              ) : (
-                genre.name
-              )}
+              {genre.name}
             </Button>
           </HStack>
         </ListItem>

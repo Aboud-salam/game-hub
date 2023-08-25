@@ -11,6 +11,7 @@ export const PlatformsList = ({
   selectedPlatform,
 }: Props) => {
   const { data, error } = usePlatforms();
+  //   handling the error by not loading the genres list , so the whole application doesn't crash
   if (error) return null;
   return (
     <>
