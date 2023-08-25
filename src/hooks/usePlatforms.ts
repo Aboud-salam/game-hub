@@ -2,14 +2,7 @@ import useData from "./useData";
 interface Platforms {
   id: number;
   name: string;
+  slug: string;
 }
-export const usePlatforms = (selectedPlatform: string) =>
-  useData<Platforms>(
-    "/platforms/lists/parents",
-    {
-      params: {
-        platforms: selectedPlatform,
-      },
-    },
-    [selectedPlatform]
-  );
+export const usePlatforms = () =>
+  useData<Platforms>("/platforms/lists/parents");
