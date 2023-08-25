@@ -1,0 +1,26 @@
+2 different ways to highlight an element on click event
+
+firts : by declaring a state variable that holds the index of the selected element and using the param index in the map function
+
+                onClick={() => {
+                    onSelectGenre(genre);
+                    setSelectedIndex(index);
+              }}
+
+              {selectedIndex === index ? (
+                <Highlight query={genre.name} styles={{ color: "orange" }}>
+                  {genre.name}
+                </Highlight>
+              ) : (
+                genre.name
+              )}
+
+second : by passing the selected genre (which already has a state variable in the app comp) to the the genres list component as a prop
+
+              {genre.id === selectedGenre?.id ? (
+                <Highlight query={genre.name} styles={{ color: "orange" }}>
+                  {genre.name}
+                </Highlight>
+              ) : (
+                genre.name
+              )}
