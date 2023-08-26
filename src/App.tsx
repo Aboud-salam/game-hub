@@ -7,6 +7,11 @@ import { Genre } from "./hooks/useGenres";
 import { PlatformsList } from "./components/PlatformsList";
 import { Platform } from "./hooks/useGames";
 import { SortOrders } from "./components/SortOrders";
+import { SearchContext } from "./hooks/useContext";
+export interface GameQueryState {
+  gameQuery: GameQuery;
+  setGameQuery: (GameQuery: GameQuery) => void;
+}
 export interface GameQuery {
   genre: Genre | null;
   platform: Platform | null;
@@ -15,6 +20,7 @@ export interface GameQuery {
 }
 function App() {
   const [gameQuery, setGameQuery] = useState<GameQuery>({} as GameQuery);
+  const providerValue = { gameQuery, setGameQuery };
   return (
     <Grid
       templateAreas={{
@@ -27,9 +33,9 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <NavBar
-          onSearch={(searchText) => setGameQuery({ ...gameQuery, searchText })}
-        />
+        <SearchContext.Provider value={providerValue}>
+          <NavBar />
+        </SearchContext.Provider>
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" px={5}>
