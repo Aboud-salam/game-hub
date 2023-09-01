@@ -7,7 +7,7 @@ import { Genre } from "./hooks/useGenres";
 import { PlatformsList } from "./components/PlatformsList";
 import { Platform } from "./hooks/useGames";
 import { SortOrders } from "./components/SortOrders";
-import { SearchContext } from "./hooks/useContext";
+import { GameQueryContext } from "./contexts/GameQueryContext";
 import { GameHeading } from "./components/GameHeading";
 export interface GameQueryState {
   gameQuery: GameQuery;
@@ -34,9 +34,9 @@ function App() {
       }}
     >
       <GridItem area="nav">
-        <SearchContext.Provider value={providerValue}>
+        <GameQueryContext.Provider value={providerValue}>
           <NavBar />
-        </SearchContext.Provider>
+        </GameQueryContext.Provider>
       </GridItem>
       <Show above="lg">
         <GridItem area="aside" px={5}>
